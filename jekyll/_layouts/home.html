@@ -1,0 +1,30 @@
+---
+layout: default
+---
+<header>
+  <h1>{{ site.title }}</h1>
+  {% if site.theme_config.show_description %}
+    <p>{{ site.description }}</p>
+  {% endif %}
+</header>
+
+{% include menu_item.html collection=site.data.menu.entries %}
+
+{%- if strapi.collections.posts.size > 0 -%}
+<ul>
+    {%- for post in strapi.collections.posts -%}
+    <li>
+        <span>{{ post.createdAt | date_to_string }} by {{ post.author.username }}</span>
+        <h3>
+            <a href="{{ post.url | relative_url }}">
+                {{ post.title }}
+            </a>
+        </h3>
+        <!-- Display an excerpt of the article -->
+        <p>{{ post.content | markdownify | strip_html | truncatewords: 10 }}</p>
+    </li>
+    {%- endfor -%}
+</ul>
+{%- endif -%}
+
+{{ content }}
