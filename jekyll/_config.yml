@@ -53,7 +53,7 @@ sass:
 
 strapi:
   # Your API endpoint (optional, default to http://localhost:1337)
-  endpoint: http://strapi:1337
+  endpoint: https://strapi-master.herokuapp.com
   collections:
     # Example for a "posts" collection
     posts:
